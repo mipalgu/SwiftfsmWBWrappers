@@ -102,11 +102,11 @@ public struct Overheating {
     public init(fromDictionary dictionary: [String: Any]) {
         self.init()
         guard
-            let overheating = dictionary["overheating"] as? Bool
+            let raw = dictionary["_raw"] as? wb_overheating
         else {
             fatalError("Unable to convert \(dictionary) to wb_overheating.")
         }
-        self.overheating = overheating
+        self._raw = raw
     }
 
 }

@@ -148,21 +148,11 @@ public struct TemperatureSensors {
     public init(fromDictionary dictionary: [String: Any]) {
         self.init()
         guard
-            let LKneePitch = dictionary["LKneePitch"] as? Bool,
-            let LAnklePitch = dictionary["LAnklePitch"] as? Bool,
-            let LAnkleRoll = dictionary["LAnkleRoll"] as? Bool,
-            let RKneePitch = dictionary["RKneePitch"] as? Bool,
-            let RAnklePitch = dictionary["RAnklePitch"] as? Bool,
-            let RAnkleRoll = dictionary["RAnkleRoll"] as? Bool
+            let raw = dictionary["_raw"] as? wb_temperature_sensors
         else {
             fatalError("Unable to convert \(dictionary) to wb_temperature_sensors.")
         }
-        self.LKneePitch = LKneePitch
-        self.LAnklePitch = LAnklePitch
-        self.LAnkleRoll = LAnkleRoll
-        self.RKneePitch = RKneePitch
-        self.RAnklePitch = RAnklePitch
-        self.RAnkleRoll = RAnkleRoll
+        self._raw = raw
     }
 
 }
