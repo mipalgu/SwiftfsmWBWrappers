@@ -57,8 +57,6 @@
  *
  */
 
-import swiftfsm
-
 //swiftlint:disable superfluous_disable_command
 //swiftlint:disable type_body_length
 //swiftlint:disable function_body_length
@@ -148,11 +146,22 @@ public struct TemperatureSensors {
     public init(fromDictionary dictionary: [String: Any]) {
         self.init()
         guard
-            let raw = dictionary["_raw"] as? wb_temperature_sensors
+            let raw = dictionary["_raw"] as? [String: Any],
+            let LKneePitch = raw["LKneePitch"] as? Bool,
+            let LAnklePitch = raw["LAnklePitch"] as? Bool,
+            let LAnkleRoll = raw["LAnkleRoll"] as? Bool,
+            let RKneePitch = raw["RKneePitch"] as? Bool,
+            let RAnklePitch = raw["RAnklePitch"] as? Bool,
+            let RAnkleRoll = raw["RAnkleRoll"] as? Bool
         else {
             fatalError("Unable to convert \(dictionary) to wb_temperature_sensors.")
         }
-        self._raw = raw
+        self.LKneePitch = LKneePitch
+        self.LAnklePitch = LAnklePitch
+        self.LAnkleRoll = LAnkleRoll
+        self.RKneePitch = RKneePitch
+        self.RAnklePitch = RAnklePitch
+        self.RAnkleRoll = RAnkleRoll
     }
 
 }
@@ -195,12 +204,4 @@ extension wb_temperature_sensors: Equatable {}
 
 public func == (lhs: wb_temperature_sensors, rhs: wb_temperature_sensors) -> Bool {
     return TemperatureSensors(lhs) == TemperatureSensors(rhs)
-}
-
-extension TemperatureSensors: ExternalVariables, WhiteboardTypeConvertible {
-
-    public var rawValue: wb_temperature_sensors {
-        return self._raw
-    }
-
 }

@@ -57,80 +57,12 @@
  *
  */
 
-//swiftlint:disable superfluous_disable_command
-//swiftlint:disable type_body_length
-//swiftlint:disable function_body_length
-//swiftlint:disable file_length
-//swiftlint:disable line_length
-//swiftlint:disable identifier_name
+import swiftfsm
 
-/**
- * Provides a common structure for the status of the temperature sensors on the nao legs.
- */
-public struct Overheating {
+extension Overheating: ExternalVariables, WhiteboardTypeConvertible {
 
-    public var _raw: wb_overheating
-
-    public var overheating: Bool {
-        get {
-            return self._raw.overheating
-        } set {
-            self._raw.overheating = newValue
-        }
+    public var rawValue: wb_overheating {
+        return self._raw
     }
 
-    /**
-     * Create a new `wb_overheating`.
-     */
-    public init(overheating: Bool = false) {
-        self._raw = wb_overheating()
-        self.overheating = overheating
-    }
-
-    /**
-     * Create a new `wb_overheating`.
-     */
-    public init(_ rawValue: wb_overheating) {
-        self._raw = rawValue
-    }
-
-    /**
-     * Create a `wb_overheating` from a dictionary.
-     */
-    public init(fromDictionary dictionary: [String: Any]) {
-        self.init()
-        guard
-            let raw = dictionary["_raw"] as? [String: Any],
-            let overheating = raw["overheating"] as? Bool
-        else {
-            fatalError("Unable to convert \(dictionary) to wb_overheating.")
-        }
-        self.overheating = overheating
-    }
-
-}
-
-extension Overheating: CustomStringConvertible {
-
-    /**
-     * Convert to a description String.
-     */
-    public var description: String {
-        var descString = ""
-        descString += "overheating=\(self.overheating)"
-        return descString
-    }
-
-}
-
-extension Overheating: Equatable {}
-
-public func == (lhs: Overheating, rhs: Overheating) -> Bool {
-    return lhs.overheating == rhs.overheating
-}
-
-extension wb_overheating: Equatable {}
-
-public func == (lhs: wb_overheating, rhs: wb_overheating) -> Bool {
-    return Overheating(lhs) == Overheating(rhs)
 }
