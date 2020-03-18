@@ -120,6 +120,25 @@ public struct TemperatureSensors {
         }
     }
 
+    public var computedVars: [String: Any] {
+        return [
+            "LKneePitch": self._raw.LKneePitch,
+            "LAnklePitch": self._raw.LAnklePitch,
+            "LAnkleRoll": self._raw.LAnkleRoll,
+            "RKneePitch": self._raw.RKneePitch,
+            "RAnklePitch": self._raw.RAnklePitch,
+            "RAnkleRoll": self._raw.RAnkleRoll
+        ]
+    }
+
+    public var manipulators: [String: (Any) -> Any] {
+        return [:]
+    }
+
+    public var validVars: [String: [Any]] {
+        return ["_raw": []]
+    }
+
     /**
      * Create a new `wb_temperature_sensors`.
      */
@@ -146,13 +165,12 @@ public struct TemperatureSensors {
     public init(fromDictionary dictionary: [String: Any]) {
         self.init()
         guard
-            let raw = dictionary["_raw"] as? [String: Any],
-            let LKneePitch = raw["LKneePitch"] as? Bool,
-            let LAnklePitch = raw["LAnklePitch"] as? Bool,
-            let LAnkleRoll = raw["LAnkleRoll"] as? Bool,
-            let RKneePitch = raw["RKneePitch"] as? Bool,
-            let RAnklePitch = raw["RAnklePitch"] as? Bool,
-            let RAnkleRoll = raw["RAnkleRoll"] as? Bool
+            let LKneePitch = dictionary["LKneePitch"] as? Bool,
+            let LAnklePitch = dictionary["LAnklePitch"] as? Bool,
+            let LAnkleRoll = dictionary["LAnkleRoll"] as? Bool,
+            let RKneePitch = dictionary["RKneePitch"] as? Bool,
+            let RAnklePitch = dictionary["RAnklePitch"] as? Bool,
+            let RAnkleRoll = dictionary["RAnkleRoll"] as? Bool
         else {
             fatalError("Unable to convert \(dictionary) to wb_temperature_sensors.")
         }

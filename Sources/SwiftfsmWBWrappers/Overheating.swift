@@ -79,6 +79,20 @@ public struct Overheating {
         }
     }
 
+    public var computedVars: [String: Any] {
+        return [
+            "overheating": self._raw.overheating
+        ]
+    }
+
+    public var manipulators: [String: (Any) -> Any] {
+        return [:]
+    }
+
+    public var validVars: [String: [Any]] {
+        return ["_raw": []]
+    }
+
     /**
      * Create a new `wb_overheating`.
      */
@@ -100,8 +114,7 @@ public struct Overheating {
     public init(fromDictionary dictionary: [String: Any]) {
         self.init()
         guard
-            let raw = dictionary["_raw"] as? [String: Any],
-            let overheating = raw["overheating"] as? Bool
+            let overheating = dictionary["overheating"] as? Bool
         else {
             fatalError("Unable to convert \(dictionary) to wb_overheating.")
         }
