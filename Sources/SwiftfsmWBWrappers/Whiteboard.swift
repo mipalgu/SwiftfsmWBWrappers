@@ -1,8 +1,8 @@
 /*
- * GenericWhiteboard.swift 
+ * Whiteboard.swift 
  * SwiftfsmWBWrappers 
  *
- * Created by Callum McColl on 17/03/2020.
+ * Created by Callum McColl on 18/03/2020.
  * Copyright © 2020 Callum McColl. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,7 +58,7 @@
 
 import swiftfsm
 
-extension GenericWhiteboard: ExternalVariablesCollection, KripkeVariablesModifier {
+extension Whiteboard: KripkeVariablesModifier {
 
     public var computedVars: [String: Any] {
         return [:]
@@ -70,9 +70,7 @@ extension GenericWhiteboard: ExternalVariablesCollection, KripkeVariablesModifie
 
     public var validVars: [String: [Any]] {
         return [
-            "atomic": [],
-            "shouldNotifySubscribers": [],
-            "procuredCount": []
+            "wbd": []
         ]
     }
 
