@@ -59,10 +59,4 @@
 
 import swiftfsm
 
-extension TemperatureSensors: ExternalVariables, WhiteboardTypeConvertible {
-
-    public var rawValue: wb_temperature_sensors {
-        return self._raw
-    }
-
-}
+extension TemperatureSensors: ClassGeneratorClass {}
