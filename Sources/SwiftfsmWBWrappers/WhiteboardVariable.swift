@@ -69,11 +69,17 @@ public final class WhiteboardVariable<T>: Snapshotable, ExternalVariablesContain
 
     public init(name: String? = nil, msgType: wb_types, atomic: Bool = false, shouldNotifySubscribers: Bool = true) {
         let wb: Whiteboard
+        let offset = withUnsafePointer(to: &WBTypes_stringValues.0) { (start: UnsafePointer<UnsafePointer<Int8>?>) -> String in
+            guard let p = UnsafeBufferPointer(start: start, count: Int(GSW_NUM_TYPES_DEFINED))[Int(msgType.rawValue)] else {
+                return "\(msgType.rawValue)"
+            }
+            return String(cString: p)
+        }
         if let name = name {
-            self.name = name + ".\(msgType)"
+            self.name = name + "." + offset
             wb = Whiteboard(wbd: gsw_new_whiteboard(name))
         } else {
-            self.name = "\(msgType)"
+            self.name = offset
             wb = Whiteboard()
         }
         let genericWb = GenericWhiteboard<T>(
