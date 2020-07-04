@@ -73,7 +73,10 @@ extension Bool: ConvertibleFromDictionary, KripkeVariablesModifier {
     }
 
     public init(fromDictionary dict: [String: Any]) {
-        self = (dict["value"] as? Bool) ?? false
+        guard let value = dict["value"] as? Bool else {
+            fatalError("Unable to convert \(dict) to Bool.")
+        }
+        self = value
     }
 
 }
