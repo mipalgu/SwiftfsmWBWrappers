@@ -58,7 +58,7 @@
 
 import swiftfsm
 
-extension Bool: ConvertibleFromDictionary, KripkeVariablesModifier {
+extension Bool: ExternalVariables, KripkeVariablesModifier {
 
     public var computedVars: [String: Any] {
         return ["value": self]
