@@ -283,7 +283,7 @@ public struct NaoWalkCommand {
         self.bend = bend
     }
 
-    static func walk(forward: Int16, left: Int16, turn: Int8) -> NaoWalkCommand {
+    public static func walk(forward: Int16, left: Int16, turn: Int8) -> NaoWalkCommand {
         var cmd = NaoWalkCommand()
         cmd.walkEngineOn = true
         cmd.forward = forward
@@ -293,27 +293,27 @@ public struct NaoWalkCommand {
         return cmd    
     }
 
-    static func walkPrecisely(forward: Int16, left: Int16, turn: Int8) -> NaoWalkCommand {
+    public static func walkPrecisely(forward: Int16, left: Int16, turn: Int8) -> NaoWalkCommand {
         var cmd = NaoWalkCommand.walk(forward: forward, left: left, turn: turn)
         cmd.exactStepsRequested = true
         return cmd
     }
 
-    static func stop() -> NaoWalkCommand {
+    public static func stop() -> NaoWalkCommand {
         return .walk(forward: 0, left: 0, turn: 0)
     }
 
-    static func standWithStiffness() -> NaoWalkCommand {
+    public static func standWithStiffness() -> NaoWalkCommand {
         return .stop()
     }
 
-    static func standWithMinimalStiffness() -> NaoWalkCommand {
+    public static func standWithMinimalStiffness() -> NaoWalkCommand {
         var cmd = NaoWalkCommand.stop()
         cmd.bend = 0
         return cmd
     }
 
-    static func disconnectWalk() -> NaoWalkCommand {
+    public static func disconnectWalk() -> NaoWalkCommand {
         var cmd = NaoWalkCommand()
         cmd.walkEngineOn = false
         return cmd
