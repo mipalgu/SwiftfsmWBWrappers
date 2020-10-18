@@ -17,7 +17,7 @@ let package = Package(
         .package(url: "ssh://git.mipal.net/git/swift_wb", .branch("master")),
         .package(url: "ssh://git.mipal.net/git/swift_GUUnits.git", .branch("master")),
         .package(url: "ssh://git.mipal.net/git/swift_GUCoordinates.git", .branch("master")),
-        .package(url: "ssh://git.mipal.net/git/swiftfsm_FSM.git", .branch("binaries"))
+        .package(url: "ssh://git.mipal.net/git/swiftfsm_FSM.git", .branch("master"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
