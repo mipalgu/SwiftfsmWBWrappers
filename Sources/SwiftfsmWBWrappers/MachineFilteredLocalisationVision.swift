@@ -64,6 +64,10 @@
 //swiftlint:disable line_length
 //swiftlint:disable identifier_name
 
+#if canImport(swiftfsm)
+import swiftfsm
+#endif
+
 /**
  * Results of the FSM (and sub machines) "SMFilterVision".
  * This machine applies some basic filtering to vision output messages.
@@ -94,7 +98,7 @@ public struct MachineFilteredLocalisationVision {
             }
         } set {
             _ = withUnsafeMutablePointer(to: &self._raw.sightings.0) { sightings_p in
-                for sightings_index in 0..<12 {
+                for sightings_index in 0..<min(12, newValue.count) {
                     sightings_p[sightings_index] = newValue[sightings_index]._raw
                 }
             }
@@ -243,3 +247,7 @@ extension wb_machine_filtered_localisation_vision: Equatable {}
 public func == (lhs: wb_machine_filtered_localisation_vision, rhs: wb_machine_filtered_localisation_vision) -> Bool {
     return MachineFilteredLocalisationVision(lhs) == MachineFilteredLocalisationVision(rhs)
 }
+
+#if canImport(swiftfsm)
+extension MachineFilteredLocalisationVision: ExternalVariables, KripkeVariablesModifier {}
+#endif
