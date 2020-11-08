@@ -64,6 +64,12 @@
 //swiftlint:disable line_length
 //swiftlint:disable identifier_name
 
+#if canImport(swiftfsm)
+import swiftfsm
+#endif
+
+import GUCoordinates
+
 /**
  * Provides a class for the current position of the robot in its frame of reference.
  * The 0 point is where the robot started (wherever that is). This message is not related to the particle filter
@@ -147,6 +153,10 @@ public struct MyPosition {
         self.heading = heading
     }
 
+    public func fieldCoordinate() -> FieldCoordinate {
+        return FieldCoordinate(position: CartesianCoordinate(x: Millimetres_t(x), y: Millimetres_t(y)), heading: .degrees(heading))
+    }
+
 }
 
 extension MyPosition: CustomStringConvertible {
@@ -179,3 +189,7 @@ extension wb_my_position: Equatable {}
 public func == (lhs: wb_my_position, rhs: wb_my_position) -> Bool {
     return MyPosition(lhs) == MyPosition(rhs)
 }
+
+#if canImport(swiftfsm)
+extension MyPosition: ExternalVariables, KripkeVariablesModifier {}
+#endif
