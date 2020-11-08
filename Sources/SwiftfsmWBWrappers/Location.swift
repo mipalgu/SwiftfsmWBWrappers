@@ -64,6 +64,12 @@
 //swiftlint:disable line_length
 //swiftlint:disable identifier_name
 
+#if canImport(swiftfsm)
+import swiftfsm
+#endif
+
+import GUCoordinates
+
 /**
  * Provides a common structure for the location of landmarks.
  */
@@ -169,6 +175,10 @@ public struct Location {
         self.directionVariance = directionVariance
     }
 
+    public var relativeCoordinate: RelativeCoordinate {
+        RelativeCoordinate(direction: Angle(degrees: direction), distance: Distance(centimetres: distance))
+    }
+
 }
 
 extension Location: CustomStringConvertible {
@@ -207,3 +217,7 @@ extension wb_location: Equatable {}
 public func == (lhs: wb_location, rhs: wb_location) -> Bool {
     return Location(lhs) == Location(rhs)
 }
+
+#if canImport(swiftfsm)
+extension Location: ExternalVariables, KripkeVariablesModifier {}
+#endif
