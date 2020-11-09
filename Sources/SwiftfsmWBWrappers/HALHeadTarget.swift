@@ -153,7 +153,7 @@ public struct HALHeadTarget {
     /**
      * Create a `wb_hal_headtarget` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let target_pitchAngle = dictionary["target_pitchAngle"] as? Float,

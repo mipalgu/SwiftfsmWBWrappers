@@ -121,7 +121,7 @@ public struct HeadJointSensors {
     /**
      * Create a `wb_head_joint_sensors` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let headYaw = dictionary["headYaw"] as? Int16,

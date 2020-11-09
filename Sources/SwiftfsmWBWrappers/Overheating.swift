@@ -111,7 +111,7 @@ public struct Overheating {
     /**
      * Create a `wb_overheating` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let overheating = dictionary["overheating"] as? Bool

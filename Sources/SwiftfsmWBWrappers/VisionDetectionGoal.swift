@@ -132,7 +132,7 @@ public struct VisionDetectionGoal {
     /**
      * Create a `wb_vision_detection_goal` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let sightingType = dictionary["sightingType"] as? GoalOptions,

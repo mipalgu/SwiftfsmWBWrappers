@@ -72,7 +72,7 @@ extension Int8: ExternalVariables, KripkeVariablesModifier {
         return [:]
     }
 
-    public init(fromDictionary dict: [String: Any]) {
+    public init(fromDictionary dict: [String: Any?]) {
         guard let value = dict["value"] as? Int8 else {
             fatalError("Unable to convert \(dict) to Int8.")
         }

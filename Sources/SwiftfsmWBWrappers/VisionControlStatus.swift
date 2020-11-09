@@ -297,7 +297,7 @@ public struct VisionControlStatus {
     /**
      * Create a `wb_vision_control_status` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let cameraResolution = dictionary["cameraResolution"] as? Resolutions,

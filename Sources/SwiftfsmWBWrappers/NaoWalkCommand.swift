@@ -247,7 +247,7 @@ public struct NaoWalkCommand {
     /**
      * Create a `wb_nao_walk_command` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let walkEngineOn = dictionary["walkEngineOn"] as? Bool,

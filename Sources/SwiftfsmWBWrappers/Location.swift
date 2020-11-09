@@ -157,7 +157,7 @@ public struct Location {
     /**
      * Create a `wb_location` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let direction = dictionary["direction"] as? Int16,

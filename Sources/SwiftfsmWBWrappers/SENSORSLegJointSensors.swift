@@ -221,7 +221,7 @@ public struct SENSORSLegJointSensors {
     /**
      * Create a `wb_sensors_legjointsensors` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let LKneePitch = dictionary["LKneePitch"] as? Float,

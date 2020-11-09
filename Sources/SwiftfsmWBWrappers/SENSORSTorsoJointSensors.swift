@@ -222,7 +222,7 @@ public struct SENSORSTorsoJointSensors {
     /**
      * Create a `wb_sensors_torsojointsensors` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let HeadYaw = dictionary["HeadYaw"] as? Float,

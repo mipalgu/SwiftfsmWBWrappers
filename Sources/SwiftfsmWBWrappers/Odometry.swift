@@ -131,7 +131,7 @@ public struct Odometry {
     /**
      * Create a `wb_odometry` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let forward = dictionary["forward"] as? Float,

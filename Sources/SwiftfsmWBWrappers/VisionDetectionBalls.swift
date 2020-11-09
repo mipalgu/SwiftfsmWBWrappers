@@ -157,7 +157,7 @@ public struct VisionDetectionBalls {
     /**
      * Create a `wb_vision_detection_balls` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let frameNumber = dictionary["frameNumber"] as? UInt64,

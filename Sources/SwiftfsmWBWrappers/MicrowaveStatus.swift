@@ -131,7 +131,7 @@ public struct MicrowaveStatus {
     /**
      * Create a `wb_microwave_status` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let timeLeft = dictionary["timeLeft"] as? Bool,

@@ -164,7 +164,7 @@ public struct VisionLines {
     /**
      * Create a `wb_vision_lines` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let lines = dictionary["lines"] as? [VisionLine],

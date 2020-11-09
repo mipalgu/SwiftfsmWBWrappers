@@ -131,7 +131,7 @@ public struct LandmarkSighting {
     /**
      * Create a `wb_landmark_sighting` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let direction = dictionary["direction"] as? Int16,

@@ -139,7 +139,7 @@ public struct MachineFilteredLocalisationVision {
     /**
      * Create a `wb_machine_filtered_localisation_vision` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let numberOfSightings = dictionary["numberOfSightings"] as? UInt8,

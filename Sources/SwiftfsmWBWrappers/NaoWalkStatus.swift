@@ -137,7 +137,7 @@ public struct NaoWalkStatus {
     /**
      * Create a `wb_nao_walk_status` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let walkEngineState = dictionary["walkEngineState"] as? WalkEngineState,

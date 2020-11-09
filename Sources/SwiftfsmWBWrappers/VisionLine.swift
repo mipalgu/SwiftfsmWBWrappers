@@ -121,7 +121,7 @@ public struct VisionLine {
     /**
      * Create a `wb_vision_line` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let lineEdgeTop = (dictionary["lineEdgeTop"] as? [String: Any]).flatMap({ PixelCoordinateLine(fromDictionary: $0)  }),

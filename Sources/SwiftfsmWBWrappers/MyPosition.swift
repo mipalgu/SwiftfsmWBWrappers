@@ -139,7 +139,7 @@ public struct MyPosition {
     /**
      * Create a `wb_my_position` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let x = dictionary["x"] as? Int16,

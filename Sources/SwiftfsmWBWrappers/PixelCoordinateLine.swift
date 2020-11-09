@@ -125,7 +125,7 @@ public struct PixelCoordinateLine {
     /**
      * Create a `wb_pixel_coordinate_line` from a dictionary.
      */
-    public init(fromDictionary dictionary: [String: Any]) {
+    public init(fromDictionary dictionary: [String: Any?]) {
         self.init()
         guard
             let start = (dictionary["start"] as? [String: Any]).flatMap({ PixelCoordinate(fromDictionary: $0)  }),
