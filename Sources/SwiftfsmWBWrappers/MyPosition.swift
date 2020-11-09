@@ -153,8 +153,8 @@ public struct MyPosition {
         self.heading = heading
     }
 
-    public func fieldCoordinate() -> FieldCoordinate {
-        return FieldCoordinate(position: CartesianCoordinate(x: Millimetres_t(x), y: Millimetres_t(y)), heading: .degrees(heading))
+    public var fieldCoordinate: FieldCoordinate {
+        FieldCoordinate(position: CartesianCoordinate(x: Millimetres_t(x), y: Millimetres_t(y)), heading: .degrees(heading))
     }
 
 }
