@@ -68,6 +68,7 @@
 import swiftfsm
 #endif
 
+import GUUnits
 import GUCoordinates
 
 /**

@@ -64,7 +64,12 @@
 //swiftlint:disable line_length
 //swiftlint:disable identifier_name
 
-#if canImport(GUCoordinates)
+#if canImport(swiftfsm)
+import swiftfsm
+#endif
+
+#if canImport(GUUnits) && canImport(GUCoordinates)
+import GUUnits
 import GUCoordinates
 #endif
 
@@ -179,7 +184,7 @@ public struct PixelCoordinate {
         self.y = y
     }
 
-    #if canImport(GUCoordinates)
+    #if canImport(GUUnits) && canImport(GUCoordinates)
     public init(_ other: GUCoordinates.PixelCoordinate) {
         self.init(x: Int16(other.x), y: Int16(other.y))
     }
@@ -222,3 +227,7 @@ extension wb_pixel_coordinate: Equatable {}
 public func == (lhs: wb_pixel_coordinate, rhs: wb_pixel_coordinate) -> Bool {
     return PixelCoordinate(lhs) == PixelCoordinate(rhs)
 }
+
+#if canImport(swiftfsm)
+extension PixelCoordinate: ExternalVariables, KripkeVariablesModifier {}
+#endif

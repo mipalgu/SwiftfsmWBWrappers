@@ -68,7 +68,10 @@
 import swiftfsm
 #endif
 
+#if canImport(GUUnits) && canImport(GUCoordinates)
+import GUUnits
 import GUCoordinates
+#endif
 
 /**
  * Provides a common structure for the location of landmarks.
@@ -175,9 +178,12 @@ public struct Location {
         self.directionVariance = directionVariance
     }
 
+    #if canImport(GUUnits) && canImport(GUCoordinates)
     public var relativeCoordinate: RelativeCoordinate {
         RelativeCoordinate(direction: Angle(degrees: direction), distance: Distance(centimetres: distance))
     }
+
+    #endif
 
 }
 
