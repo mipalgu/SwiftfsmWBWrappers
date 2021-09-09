@@ -1,3 +1,5 @@
-# SwiftfsmWBWrappers
+SwiftfsmWBWrappers
+===================
+*Convenience types for accessing the gusimplewhiteboard in swift.*
 
-A description of this package.
+---
