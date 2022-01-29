@@ -73,10 +73,10 @@ public final class WhiteboardVariable<T>: Snapshotable, ExternalVariablesContain
         self.val = val
     }
 
-    public init(name: String? = nil, msgType: wb_types, atomic: Bool = false, shouldNotifySubscribers: Bool = true) {
+    public convenience init(name: String? = nil, msgType: wb_types, atomic: Bool = false, shouldNotifySubscribers: Bool = true) {
         let wb: Whiteboard
         let offset = "\(msgType.rawValue)"
-        let offsetName = withUnsafePointer(to: &wb_types_stringValues.0) {
+        let offsetName: String = withUnsafePointer(to: &wb_types_stringValues.0) {
             let buffer = UnsafeBufferPointer(start: $0, count: Int(WB_NUM_TYPES_DEFINED))
             let p: UnsafePointer<CChar> = buffer[Int(msgType.rawValue)]!
             return String(cString: p)
