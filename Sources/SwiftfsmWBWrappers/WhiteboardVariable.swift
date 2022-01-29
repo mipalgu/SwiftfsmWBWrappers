@@ -67,14 +67,26 @@ public final class WhiteboardVariable<T>: Snapshotable, ExternalVariablesContain
 
     public var val: T
 
+    fileprivate init(wb: GenericWhiteboard<T>, name: String, val: T) {
+        self.wb = wb
+        self.name = name
+        self.val = val
+    }
+
     public init(name: String? = nil, msgType: wb_types, atomic: Bool = false, shouldNotifySubscribers: Bool = true) {
         let wb: Whiteboard
         let offset = "\(msgType.rawValue)"
+        let offsetName = withUnsafePointer(to: &wb_types_stringValues.0) {
+            let buffer = UnsafeBufferPointer(start: $0, count: Int(WB_NUM_TYPES_DEFINED))
+            let p: UnsafePointer<CChar> = buffer[Int(msgType.rawValue)]!
+            return String(cString: p)
+        }
+        let actualName: String
         if let name = name {
-            self.name = name + "." + offset
+            actualName = name + "." + offsetName
             wb = Whiteboard(wbd: gsw_new_whiteboard(name))
         } else {
-            self.name = offset
+            actualName = offsetName
             wb = Whiteboard()
         }
         let genericWb = GenericWhiteboard<T>(
@@ -83,8 +95,7 @@ public final class WhiteboardVariable<T>: Snapshotable, ExternalVariablesContain
             atomic: atomic,
             shouldNotifySubscribers: shouldNotifySubscribers
         )
-        self.wb = genericWb
-        self.val = genericWb.get()
+        self.init(wb: genericWb, name: actualName, val: genericWb.get())
     }
 
     public func takeSnapshot() {
@@ -93,6 +104,14 @@ public final class WhiteboardVariable<T>: Snapshotable, ExternalVariablesContain
 
     public func saveSnapshot() {
         self.wb.post(val: self.val)
+    }
+
+}
+
+extension WhiteboardVariable: Cloneable {
+
+    public func clone() -> WhiteboardVariable<T> {
+        return WhiteboardVariable(wb: wb, name: name, val: val)
     }
 
 }
