@@ -14,7 +14,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "git@github.com:mipalgu/FSM.git", .branch("verification")),
+        .package(url: "git@github.com:mipalgu/FSM.git", .branch("parameters")),
         .package(url: "https://github.com/mipalgu/swift_wb.git", .branch("main")),
         .package(url: "https://github.com/mipalgu/swift_GUUnits.git", .branch("main")),
         .package(url: "https://github.com/mipalgu/swift_GUCoordinates.git", .branch("main"))
